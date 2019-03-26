@@ -39,4 +39,4 @@ $(eval $(call LinkApp,serial,$(objs)))
 
 
 scp:
-	scp -P 2023 ./build/serial au@192.168.10.230:/tmp
+	scp -P 2204 ./build/serial root@192.168.0.230:/root

@@ -93,9 +93,16 @@ void	io2tty_std_in(void *arg, int fd) {
 
 	int size = ret;
 	size--;
+
+
+#if 1 // for rail test
 	buf[size++] = '\r';
-	//buf[size++] = '\n';
+	buf[size++] = '\n';
 	buf[size++] = 0;
+#else // 4G
+	buf[size++] = '\r';
+	buf[size++] = 0;
+#endif
 
 	log_debug_hex("send : %s",  buf, strlen(buf));
 	serial_write(env.sfd, buf, size, 80);
