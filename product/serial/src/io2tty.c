@@ -90,9 +90,14 @@ void	io2tty_std_in(void *arg, int fd) {
 		return;
 	}
 
-	int size = ret;
-	buf[size] = 0;
 
+	int size = ret;
+	size--;
+	buf[size++] = '\r';
+	//buf[size++] = '\n';
+	buf[size++] = 0;
+
+	log_debug_hex("send : %s",  buf, strlen(buf));
 	serial_write(env.sfd, buf, size, 80);
 
 	log_debug(">$");

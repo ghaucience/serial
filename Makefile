@@ -38,3 +38,5 @@ objs = $(subst $(ROOTDIR),$(WORKDIR), $(subst .c,.o,$(srcs)))
 $(eval $(call LinkApp,serial,$(objs)))
 
 
+scp:
+	scp -P 2023 ./build/serial au@192.168.10.230:/tmp

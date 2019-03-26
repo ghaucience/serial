@@ -29,19 +29,20 @@ static void ds_exit_handler(void);
 static void sig_set();
 static void timerout_cb(struct timer *t);
 
+static int parse_args(int argc, char *argv[]);
+static int usage();
+static int write_pid();
+static char * get_exe_path( char * buf, int count);
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 static int ds_child_died = 0;
 struct timer_head th = {.first = NULL};
-
 static char *uart_dev = "/dev/ttyS1";
 static int uart_buad = 115200;
 
-
-int parse_args(int argc, char *argv[]);
-int usage();
-int write_pid();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char *argv[]) {
@@ -182,3 +183,23 @@ int write_pid() {
 	return 0;
 }
 
+
+char * get_exe_path( char * buf, int count) {
+	int i;
+	int rslt = readlink("/proc/self/exe", buf, count - 1);/////注意这里使用的是self
+	if (rslt < 0 || (rslt >= count - 1))
+	{
+		return NULL;
+	}
+	buf[rslt] = '\0';
+	for (i = rslt; i >= 0; i--)
+	{
+		printf("buf[%d] %c\n", i, buf[i]);
+		if (buf[i] == '/')
+		{
+			buf[i + 1] = '\0';
+			break;
+		}
+	}
+	return buf;
+}
