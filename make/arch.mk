@@ -23,6 +23,15 @@ CROSS_CFLAGS				:= -I$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-
 CROSS_CFLAGS				+= -I$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/include
 CROSS_LDFLAGHS			:= -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/lib
 CROSS_LDFLAGHS			+= -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/lib/ 
+
+#CROSSTOOLDIR 				:= /home/au/all/gwork/MT7688/openwrt
+#export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
+#export  PATH 				:=$(PATH):$(STAGING_DIR)/toolchain-mipsel_24kc_gcc-7.4.0_musl/bin
+#CROSS_CFLAGS				:= -I$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kc_gcc-7.4.0_musl/usr/include
+#CROSS_CFLAGS				+= -I$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kc_musl/usr/include
+#CROSS_LDFLAGHS			:= -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kc_gcc-7.4.0_musl/usr/lib
+#CROSS_LDFLAGHS			+= -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kc_musl/usr/lib
+
 endif
 
 ifeq ($(ARCH),ARM)
@@ -45,8 +54,8 @@ endif
 
 
 
-#CROSS 	?= mipsel-openwrt-linux-
-CROSS   ?= arm-cortexa9-linux-gnueabihf-
+CROSS 	?= mipsel-openwrt-linux-
+#CROSS   ?= arm-cortexa9-linux-gnueabihf-
 
 #CROSS 	?= mipsel-openwrt-linux-
 #ARCH		?= mips

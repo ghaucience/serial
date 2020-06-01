@@ -84,6 +84,7 @@ int io2tty_handler_event(stEvent_t *event) {
 void	io2tty_std_in(void *arg, int fd) {
 	char buf[1024];
 
+	log_debug(" ");
 	int ret = read(0, buf, sizeof(buf));
 	if (ret <= 0) {
 		log_warn("what happend?");
@@ -92,34 +93,52 @@ void	io2tty_std_in(void *arg, int fd) {
 
 
 	int size = ret;
-	size--;
+	//size--;
 
 
-#if 1 // for rail test
+#if 0 // for rail test
 	buf[size++] = '\r';
 	buf[size++] = '\n';
 	buf[size++] = 0;
-#else // 4G
+#elif 0// 4G
 	buf[size++] = '\r';
+	buf[size++] = 0;
+#elif 1
+	buf[size++] = '\n';
 	buf[size++] = 0;
 #endif
 
-	log_debug_hex("send : %s",  buf, strlen(buf));
+	buf[size] = 0;
+
+	//log_debug_hex("send : %s",  buf, strlen(buf));
 	serial_write(env.sfd, buf, size, 80);
 
-	log_debug(">$");
+	//log_debug(">$");
 }
 
 void	io2tty_serial_in(void *arg, int fd) {
-	char buf[1024];
+	//log_debug(" ");
+	char buf[4096 *3];
+	memset(buf, 0, sizeof(buf));
 	int ret = serial_read(env.sfd, buf, sizeof(buf), 80);
+	//log_debug("ret is %d", ret);
+	//log_debug_hex("buf:", buf, ret);
+	
 	if (ret <= 0) {
 		log_warn("[%d] can't recv any bytes from serial : %d", __LINE__, ret);
 		return;
 	}
-
 	buf[ret] = 0;
-	log_info("%s", buf);
+
+	log_debug("%s", buf);
+
+	/*
+	int i = 0;
+	for (i = 0; i < ret; i++) {
+		printf("%02X", buf[i]&0xff);
+	}
+	*/
+
 	return;
 }
 

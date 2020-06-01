@@ -9,6 +9,8 @@
 #ifndef __AYLA_HEX_H__
 #define __AYLA_HEX_H__
 
+
+typedef int ssize_t;
 /*
  * Convert two characters of hex string to their numerical value.
  * Returns hex + the size of the byte on success or NULL on failure.
