@@ -8,21 +8,21 @@
 #export	STAGING_DIR	:= $(CROSSTOOLDIR)/staging_dir
 #export	PATH :=$(PATH):$(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin/
 #export	PATH :=$(PATH):$(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_glibc-2.21/bin
-export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
-export  PATH 				:=$(PATH):$(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_glibc-2.21/bin
+#export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
+#export  PATH 				:=$(PATH):$(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_glibc-2.21/bin
 
 #ARCH								:= ARM
 ARCH								:= MT7620
 
 ifeq ($(ARCH),MT7620)
-CROSSTOOLDIR 				:= /home/au/all/gwork/openwrt
-CROSS   						:= mipsel-openwrt-linux-
-export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
-export  PATH 				:= $(PATH):$(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin
-CROSS_CFLAGS				:= -I$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/include
-CROSS_CFLAGS				+= -I$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/include
-CROSS_LDFLAGHS			:= -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/lib
-CROSS_LDFLAGHS			+= -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/lib/ 
+#CROSSTOOLDIR 				:= /home/au/all/gwork/openwrt
+#CROSS   						:= mipsel-openwrt-linux-
+#export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
+#export  PATH 				:= $(PATH):$(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin
+#CROSS_CFLAGS				:= -I$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/include
+#CROSS_CFLAGS				+= -I$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/include
+#CROSS_LDFLAGHS			:= -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/lib
+#CROSS_LDFLAGHS			+= -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/lib/ 
 
 #CROSSTOOLDIR 				:= /home/au/all/gwork/MT7688/openwrt
 #export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
@@ -31,6 +31,15 @@ CROSS_LDFLAGHS			+= -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc
 #CROSS_CFLAGS				+= -I$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kc_musl/usr/include
 #CROSS_LDFLAGHS			:= -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kc_gcc-7.4.0_musl/usr/lib
 #CROSS_LDFLAGHS			+= -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kc_musl/usr/lib
+
+CROSSTOOLDIR                           := /www/openwrt/
+#CROSS                                                  := mipsel-openwrt-linux-
+export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
+export  PATH                           :=$(PATH):$(STAGING_DIR)/toolchain-mipsel_24kc_gcc-7.3.0_musl/bin
+CROSS_CFLAGS                           := -I$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kc_gcc-7.3.0_musl/usr/include
+CROSS_CFLAGS                           += -I$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kc_musl/usr/include
+CROSS_LDFLAGHS                  := -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kc_gcc-7.3.0_musl/usr/lib
+CROSS_LDFLAGHS                  += -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kc_musl/usr/lib
 
 endif
 
